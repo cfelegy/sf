@@ -1,7 +1,20 @@
-import { PageProps, RouteContext } from "$fresh/server.ts";
+import { Handlers, PageProps, RouteContext } from "$fresh/server.ts";
 import { State } from "../middleware/state.ts";
+import { Board, Repo } from "../model.ts";
 
-export default function Home({ state }: PageProps<never, State>) {
+interface HomeData {
+  boards: Board[];
+}
+
+export const handler: Handlers<HomeData, State> = {
+  async GET(_req, ctx) {
+    const boards = await ctx.state.repo.getBoards();
+
+    return await ctx.render({ boards });
+  },
+};
+
+export default function Home({ data, state }: PageProps<HomeData, State>) {
   return (
     <>
       Index Page
@@ -16,6 +29,13 @@ export default function Home({ state }: PageProps<never, State>) {
         )
         : <a href="/login">Log in</a>}
       <br />
+      <main>
+        {data.boards.map((board) => (
+          <div>
+            <a href={`/${board.name}`}>{board.name}</a>
+          </div>
+        ))}
+      </main>
     </>
   );
 }

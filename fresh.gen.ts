@@ -2,21 +2,29 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $0 from "./routes/_404.tsx";
-import * as $1 from "./routes/_app.tsx";
-import * as $2 from "./routes/_middleware.tsx";
-import * as $3 from "./routes/index.tsx";
-import * as $4 from "./routes/login.tsx";
-import * as $5 from "./routes/logout.tsx";
+import * as $0 from "./routes/[board]/[thread].tsx";
+import * as $1 from "./routes/[board]/index.tsx";
+import * as $2 from "./routes/[board]/new.tsx";
+import * as $3 from "./routes/_404.tsx";
+import * as $4 from "./routes/_app.tsx";
+import * as $5 from "./routes/_middleware.tsx";
+import * as $6 from "./routes/admin/boards.tsx";
+import * as $7 from "./routes/index.tsx";
+import * as $8 from "./routes/login.tsx";
+import * as $9 from "./routes/logout.tsx";
 
 const manifest = {
   routes: {
-    "./routes/_404.tsx": $0,
-    "./routes/_app.tsx": $1,
-    "./routes/_middleware.tsx": $2,
-    "./routes/index.tsx": $3,
-    "./routes/login.tsx": $4,
-    "./routes/logout.tsx": $5,
+    "./routes/[board]/[thread].tsx": $0,
+    "./routes/[board]/index.tsx": $1,
+    "./routes/[board]/new.tsx": $2,
+    "./routes/_404.tsx": $3,
+    "./routes/_app.tsx": $4,
+    "./routes/_middleware.tsx": $5,
+    "./routes/admin/boards.tsx": $6,
+    "./routes/index.tsx": $7,
+    "./routes/login.tsx": $8,
+    "./routes/logout.tsx": $9,
   },
   islands: {},
   baseUrl: import.meta.url,
