@@ -1,4 +1,5 @@
 import { Handlers, PageProps, RouteContext } from "$fresh/server.ts";
+import { Config } from "../config.ts";
 import { State } from "../middleware/state.ts";
 import { Board, Repo } from "../model.ts";
 
@@ -17,22 +18,26 @@ export const handler: Handlers<HomeData, State> = {
 export default function Home({ data, state }: PageProps<HomeData, State>) {
   return (
     <>
-      Index Page
-      <br />
-      {state.session
-        ? (
-          <>
-            Logged in as {state.session.username}
-            <br />
-            <a href="/logout">Log out</a>
-          </>
-        )
-        : <a href="/login">Log in</a>}
-      <br />
+      {state.session &&
+        Config.administrators.includes(state.session?.username) && (
+        <section className="mb-2">
+          <h1 className="w-full border-b tracking-wider text-xl font-bold">
+            administration zone
+          </h1>
+          <p>
+            <a href="/admin/boards" className="underline">Manage Boards</a>
+          </p>
+        </section>
+      )}
       <main>
+        <h1 className="w-full border-b tracking-wider text-xl font-bold">
+          discussion boards
+        </h1>
         {data.boards.map((board) => (
-          <div>
-            <a href={`/${board.name}`}>{board.name}</a>
+          <div className="my-2">
+            <a className="underline text-lg" href={`/${board.name}`}>
+              {board.name}
+            </a>
           </div>
         ))}
       </main>
